@@ -35,4 +35,6 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
     color: #333;
+    word-wrap: break-word; /* Энд дээр текстийн урт хамаардаг тул багтахгүй бол шивж гаргах болно */
+    white-space: pre-wrap; /* Зурвас хуудсанд шивэх үед багтах боломж олгоно */
 }
