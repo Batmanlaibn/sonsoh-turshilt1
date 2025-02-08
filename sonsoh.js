@@ -8,28 +8,15 @@ const textOutput = document.getElementById('text-output');
 // Яриаг хүлээн авах
 recognition.onresult = (event) => {
     const transcript = event.results[0][0].transcript;
-    textOutput.textContent = transcript;  // Ярианы текстийг гаргах
+    textOutput.textContent = transcript;  // Ярианы текстийг дэлгэц дээр харуулах
+};
+
+// Хэрэв яриаг дуусгаж хүлээж авах үед алдаа гарвал мэдэгдэж болно
+recognition.onerror = (event) => {
+    textOutput.textContent = "Алдаа гарлаа. Дахин оролдоно уу.";
 };
 
 startRecognitionBtn.addEventListener('click', () => {
+    textOutput.textContent = "Яриаг хүлээн авч байна...";
     recognition.start();  // Яриаг хүлээн авах эхлэх
-});
-
-// Text-to-Speech (TTS) хэсэг
-const startSpeechBtn = document.getElementById('start-speech');
-
-// Текстийг дуугаар хэлэх
-const textToSpeech = (text) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'mn-MN';  // Монгол хэл
-    window.speechSynthesis.speak(utterance);
-};
-
-startSpeechBtn.addEventListener('click', () => {
-    const text = textOutput.textContent;
-    if (text && text !== 'Яриаг хүлээн авах...') {
-        textToSpeech(text);  // Текстийг дуугаар хэлүүлэх
-    } else {
-        alert("Бие даасан текст байхгүй байна.");
-    }
 });
